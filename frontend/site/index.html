@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KingScan</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="KingScan inicio">
+      <span class="brand-mark">K</span>
+      <span>KingScan</span>
+    </a>
+    <nav class="nav" aria-label="Menu principal">
+      <a href="#catalogo">Catalogo</a>
+      <a href="#lancamentos">Lancamentos</a>
+      <a href="#leitor">Leitor</a>
+      <a href="#admin">Admin</a>
+    </nav>
+    <button class="icon-button" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema">
+      <span class="icon-sun"></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <img src="../users/images/outro-2.jpeg" alt="Arte de manga em destaque" class="hero-image">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Nova temporada</p>
+        <h1>KingScan</h1>
+        <p class="hero-copy">Leia lancamentos, acompanhe capitulos e gerencie seu catalogo em um painel pronto para editar.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#catalogo">Ver catalogo</a>
+          <a class="button secondary" href="#admin">Editar site</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section strip" id="lancamentos">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Atualizado hoje</p>
+          <h2>Capitulos recentes</h2>
+        </div>
+        <button class="button ghost" id="seedButton" type="button">Restaurar dados</button>
+      </div>
+      <div class="release-list" id="releaseList"></div>
+    </section>
+
+    <section class="section" id="catalogo">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Biblioteca</p>
+          <h2>Catalogo de mangas</h2>
+        </div>
+        <div class="filters">
+          <input id="searchInput" type="search" placeholder="Buscar manga">
+          <select id="genreFilter" aria-label="Filtrar por genero">
+            <option value="todos">Todos</option>
+          </select>
+        </div>
+      </div>
+      <div class="manga-grid" id="mangaGrid"></div>
+    </section>
+
+    <section class="reader-band" id="leitor">
+      <div class="reader-copy">
+        <p class="eyebrow">Previa do leitor</p>
+        <h2 id="readerTitle">Selecione um manga</h2>
+        <p id="readerDescription">Clique em qualquer obra do catalogo para ver detalhes, capitulos e abrir o leitor.</p>
+        <div class="reader-meta" id="readerMeta"></div>
+      </div>
+      <div class="reader-panel">
+        <div class="reader-toolbar">
+          <button class="icon-button" id="prevPage" type="button" aria-label="Pagina anterior" title="Pagina anterior">&lt;</button>
+          <span id="pageCounter">Pagina 1/3</span>
+          <button class="icon-button" id="nextPage" type="button" aria-label="Proxima pagina" title="Proxima pagina">&gt;</button>
+        </div>
+        <div class="page-frame" id="pageFrame"></div>
+      </div>
+    </section>
+
+    <section class="section admin-section" id="admin">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Painel rapido</p>
+          <h2>Editar catalogo</h2>
+        </div>
+      </div>
+      <form class="admin-form" id="mangaForm">
+        <input type="hidden" id="mangaId">
+        <label>
+          Titulo
+          <input id="titleInput" type="text" required placeholder="Nome da obra">
+        </label>
+        <label>
+          Genero
+          <input id="genreInput" type="text" required placeholder="Acao, Romance, Drama">
+        </label>
+        <label>
+          Status
+          <select id="statusInput">
+            <option>Em lancamento</option>
+            <option>Completo</option>
+            <option>Pausado</option>
+          </select>
+        </label>
+        <label>
+          Capa ou imagem
+          <input id="coverInput" type="url" placeholder="https://...">
+        </label>
+        <label class="wide">
+          Descricao
+          <textarea id="descriptionInput" rows="4" required placeholder="Resumo da obra"></textarea>
+        </label>
+        <div class="form-actions">
+          <button class="button primary" type="submit">Salvar manga</button>
+          <button class="button ghost" id="clearForm" type="button">Limpar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>KingScan</span>
+    <span>Site editavel pronto para conectar com sua API.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

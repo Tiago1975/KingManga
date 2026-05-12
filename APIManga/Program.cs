@@ -19,7 +19,7 @@ namespace APIManga
 
 			builder.Services.AddControllers();
 
-			// Configuração de CORS
+			// Configuracao de CORS
 			builder.Services.AddCors(options =>
 			{
 				options.AddPolicy("AllowFrontend", policy =>
@@ -39,7 +39,7 @@ namespace APIManga
 				{
 					Title = "APIManga",
 					Version = "v1",
-					Description = "API para tradução e gerenciamento de mangás e manhwas",
+					Description = "API para traducao e gerenciamento de mangas e manhwas",
 					Contact = new OpenApiContact
 					{
 						Name = "King Irrisorie",
@@ -48,14 +48,8 @@ namespace APIManga
 				});
 			});
 
-			// Configure Kestrel para ouvir em todos os IPs
-			builder.WebHost.ConfigureKestrel(options =>
-			{
-				options.ListenAnyIP(5215, listenOptions =>
-				{
-					listenOptions.UseHttps();
-				});
-			});
+			var port = Environment.GetEnvironmentVariable("PORT") ?? "5215";
+			builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 			var app = builder.Build();
 
@@ -67,7 +61,10 @@ namespace APIManga
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", "APIManga v1");
 			});
 
-			app.UseHttpsRedirection();
+			if (app.Environment.IsDevelopment())
+			{
+				app.UseHttpsRedirection();
+			}
 			app.UseAuthorization();
 			app.MapControllers();
 
