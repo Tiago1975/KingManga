@@ -103,11 +103,13 @@ nav a:hover {
 }
 
 .manga-thumbnail {
-    width: 300px;
-    height: 400px;
-    object-fit: cover;
+    width: 320px;
+    height: 180px;
+    object-fit: contain;
+    background-color: #0F0F0F;
     border-radius: 5px;
     border: 2px solid #660000;
+    flex-shrink: 0;
 }
 
 .manga-info {
@@ -175,8 +177,9 @@ nav a:hover {
     }
 
     .manga-thumbnail {
-        width: 250px;
-        height: 350px;
+        width: min(100%, 360px);
+        height: auto;
+        aspect-ratio: 16 / 9;
     }
 
     .manga-title {
@@ -224,8 +227,9 @@ nav a:hover {
     }
 
     .manga-thumbnail {
-        width: 200px;
-        height: 300px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
     }
 
     .manga-title {
